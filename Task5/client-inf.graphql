@@ -1,0 +1,58 @@
+type Query {
+  "Получить информацию о клиенте по ID"
+  client(id: String!): Client
+
+  "Получить документы клиента по ID"
+  documents(clientId: String!): [Document!]!
+
+  "Получить родственников клиента по ID"
+  relatives(clientId: String!): [Relative!]!
+}
+
+type Client {
+  "Уникальный идентификатор клиента"
+  id: String!
+
+  "Полное имя клиента"
+  name: String!
+
+  "Возраст клиента"
+  age: Int!
+
+  "Документы клиента (вложенный запрос)"
+  documents: [Document!]!
+
+  "Родственники клиента (вложенный запрос)"
+  relatives: [Relative!]!
+}
+
+type Document {
+  "Уникальный идентификатор документа"
+  id: String!
+
+  "Тип документа (паспорт, водительские права и т.д.)"
+  type: String!
+
+  "Номер документа"
+  number: String!
+
+  "Дата выдачи документа"
+  issueDate: String!
+
+  "Дата окончания действия документа"
+  expiryDate: String!
+}
+
+type Relative {
+  "Уникальный идентификатор родственника"
+  id: String!
+
+  "Тип родственной связи (супруг, ребенок и т.д.)"
+  relationType: String!
+
+  "Полное имя родственника"
+  name: String!
+
+  "Возраст родственника"
+  age: Int
+}
